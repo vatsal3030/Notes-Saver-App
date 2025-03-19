@@ -52,7 +52,7 @@ const Home = () => {
                     value={title} onChange={(e) => { setTitle(e.target.value) }}
                     className="w-full max-w-[600px] p-3 bg-gray-800 text-white border border-gray-400 rounded focus:outline-none focus:border-teal-400 placeholder-gray-400"
                 />
-                <button className='p-2 rounded-2xl bg-gray-700 border-2 border-gray-700 hover:border-2 hover:border-teal-600 ' onClick={createPaste}>
+                <button className='p-2 rounded-xl bg-gray-700 border-2 border-gray-700 hover:border-2 hover:border-teal-600 ' onClick={createPaste}>
                     {
                         pasteId ? "Update" : "Create My Paste"
                     }
