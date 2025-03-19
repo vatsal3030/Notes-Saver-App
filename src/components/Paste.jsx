@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RemoveFromPaste } from '../Redux/pasteSlice';
 import toast from 'react-hot-toast';
-import ShareButton from './ShareButton';
 
 const Paste = () => {
   const pastes = useSelector((state) => state.paste.pastes);
@@ -29,14 +28,15 @@ const Paste = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <div className='w-full h-6   mt-4 flex flex-row justify-start items-center space-x-6'>
+
+        </div>
+
+        <div className="flex flex-col gap-5 mt-5 border-1 px-6 py-4 bg-gray-700 ">
+          <div className='w-full h-6 flex flex-row justify-start items-center space-x-6'>
             <div className='w-4 h-4 bg-red-600 rounded-[50%]'></div>
             <div className='w-4 h-4 bg-blue-600 rounded-[50%]'></div>
             <div className='w-4 h-4 bg-green-600 rounded-[50%]'></div>
           </div>
-        </div>
-
-        <div className="flex flex-col gap-5 mt-5 border-1 px-6 py-4 bg-gray-700 ">
           <div className='self-start'>
             <p className='text-5xl font-bold'>All Pastes</p>
           </div>
@@ -49,7 +49,7 @@ const Paste = () => {
                     <div className='text-4xl font-extrabold  text-blue-200'>{paste.title}</div>
                     <div className='w-full  h-[1px] bg-teal-100 mt-1' ></div>
                     <div className='w-full text-xl opacity-70 mt-2 flex'>{paste.content}</div>
-                    <div className="flex flex-row gap-8 content-evenly w-full place-content-evenly mt-2 text-[18px]">
+                    <div className="flex flex-row gap-8 content-evenly w-full place-content-evenly mt-2 text-[15px]">
                       <button
                         className="group border-1 rounded bg-teal-800 font-bold px-6 hover:bg-white hover:text-teal-700 transition-all duration-100 cursor-pointer"
                         onClick={(e) => {
@@ -76,7 +76,6 @@ const Paste = () => {
                           navigator.clipboard.writeText(paste?.content);
                           toast.success("Copied to clipboard")
                         }}>Copy</button>
-                      <ShareButton pasteId={paste.id} />
                     </div>
                     <div>{paste.createdAt}</div> {/* ✅ Ensure correct property name */}
                   </div>

@@ -5,6 +5,17 @@
   text-align: center;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#root {
+  display: flex;
+  justify-content: center; 
+  height: 100vh;     
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
