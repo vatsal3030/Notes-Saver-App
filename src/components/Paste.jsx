@@ -18,7 +18,6 @@ const Paste = () => {
 
   return (
     <div>
-
       <div className='overflow-x-hidden w-[800px]'>
         <div className='w-full flex flex-col items-start '>
           <input
@@ -28,9 +27,7 @@ const Paste = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-
         </div>
-
         <div className="flex flex-col gap-5 mt-5 border-1 px-6 py-4 bg-gray-700 ">
           <div className='w-full h-6 flex flex-row justify-start items-center space-x-6'>
             <div className='w-4 h-4 bg-red-600 rounded-[50%]'></div>
@@ -44,7 +41,6 @@ const Paste = () => {
             filterData.map(
               (paste) => {
                 return (
-
                   <div key={paste._id} className="flex flex-col justify-center items-start border-1 rounded border-white p-3 bg-gray-900 hover:scale-102 transition-all duration-500 ease-in-out">
                     <div className='text-4xl font-extrabold  text-blue-200'>{paste.title}</div>
                     <div className='w-full  h-[1px] bg-teal-100 mt-1' ></div>
@@ -76,8 +72,10 @@ const Paste = () => {
                           navigator.clipboard.writeText(paste?.content);
                           toast.success("Copied to clipboard")
                         }}>Copy</button>
+                      <p className="text-sm text-gray-500 mt-2">
+                        Created At: {paste.createdAt ? new Date(paste.createdAt).toLocaleString() : "Unknown"}
+                      </p>
                     </div>
-                    <div>{paste.createdAt}</div> {/* ✅ Ensure correct property name */}
                   </div>
                 );
               })}

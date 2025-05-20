@@ -11,10 +11,17 @@ export const pasteSlice = createSlice({
     reducers: {
         AddToPaste: (state, action) => {
             const paste = action.payload;
+            if (typeof paste.content !== "string" || paste.content.trim() === "") {
+                toast.dismiss();
+                toast.error("Empty Value can't be added");
+                return;
+            }
             state.pastes.push(paste);
             localStorage.setItem("pastes", JSON.stringify(state.pastes));
-            toast.success("Paste Created Successfully!");
-        },
+            toast.dismiss();
+            toast.success("Paste Created Successfully!")
+        }
+        ,
         UpdateToPaste: (state, action) => {
             const paste = action.payload;
             const index = state.pastes.findIndex((item) => item._id === paste._id);
@@ -27,12 +34,16 @@ export const pasteSlice = createSlice({
         ResetAllPaste: (state) => {
             state.pastes = [];
             localStorage.removeItem("pastes");
+            toast.dismiss();
+
             toast.success("All pastes have been reset!");
         },
         RemoveFromPaste: (state, action) => {
             const pasteId = action.payload;
             state.pastes = state.pastes.filter((item) => item._id !== pasteId); // ✅ Corrected filter logic
             localStorage.setItem("pastes", JSON.stringify(state.pastes));
+            toast.dismiss();
+
             toast.success("Paste deleted successfully!");
         },
     },

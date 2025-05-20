@@ -12,7 +12,6 @@ const Home = () => {
     const allPaste = useSelector((state) => state.paste.pastes);
 
     useEffect(() => {
-        console.log("Inside use effect");
         if (pasteId) {
             const paste = allPaste.find((p) => p._id === pasteId);
             setTitle(paste.title);
@@ -25,8 +24,10 @@ const Home = () => {
             title: title,
             content: value,
             _id: pasteId || Date.now().toString(36),
-            createAt: new Date().toISOString(),
-        }
+            createdAt: new Date().toISOString(), // ✅ fixed key name
+        };
+
+        console.log(paste)
 
 
         if (pasteId) {
